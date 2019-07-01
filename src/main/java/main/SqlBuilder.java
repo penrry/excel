@@ -49,6 +49,7 @@ public class SqlBuilder {
         int i = builder.lastIndexOf(",");
         builder.delete(i,i+1);
         builder.append(" ) ");
+        builder.append(" comment = '" + table.getTableComment() + "' ");
         return builder.toString();
     }
 

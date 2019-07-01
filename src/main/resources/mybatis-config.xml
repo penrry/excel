@@ -6,7 +6,7 @@
         <property name="jdbc.username" value="cdqd"/>
         <property name="jdbc.password" value="Kk!123456"/>
         <property name="jdbc.url"
-                  value="jdbc:mysql://192.168.3.209:3306/dxw_t?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Asia/Shanghai"/>
+                  value="jdbc:mysql://192.168.3.209:3306/medical_insurance_3.0?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Asia/Shanghai"/>
     </properties>
 
     <environments default="test">

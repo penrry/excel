@@ -66,9 +66,10 @@ public class SqlBuilder {
         if(StringUtils.isEmpty(column.getColumnType())){
             return false;
         }
-        if(StringUtils.isEmpty(column.getColumnLength())){
-            return false;
-        }
+        //todo
+//        if(StringUtils.isEmpty(column.getColumnLength())){
+//            return false;
+//        }
         return true;
     }
 

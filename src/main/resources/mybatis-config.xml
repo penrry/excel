@@ -6,7 +6,11 @@
         <property name="jdbc.username" value="root"/>
         <property name="jdbc.password" value="123456"/>
         <property name="jdbc.url"
+<<<<<<< HEAD
                   value="jdbc:mysql://127.0.0.1/test?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Asia/Shanghai"/>
+=======
+                  value="jdbc:mysql://192.168.3.209:3306/medical_insurance_3.0?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Asia/Shanghai"/>
+>>>>>>> fbef8d326d0a72ddcd5ee29565527983d18c1854
     </properties>
 
     <environments default="test">

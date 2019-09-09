@@ -3,6 +3,8 @@ package core;
 import main.SqlBuilder;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -19,6 +21,8 @@ public class TableThread extends Thread{
 
     private SqlSessionFactory sqlSessionFactory;
 
+    Logger logger = LoggerFactory.getLogger(TableThread.class);
+
     public TableThread(SqlBuilder sqlBuilder, SqlSessionFactory sqlSessionFactory) {
         this.sqlBuilder = sqlBuilder;
         this.sqlSessionFactory = sqlSessionFactory;
@@ -33,6 +37,7 @@ public class TableThread extends Thread{
         //执行操作
         PreparedStatement preparedStatement = null;
         try {
+            logger.info(sql);
             preparedStatement = sqlSession.getConnection().prepareStatement(sql);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

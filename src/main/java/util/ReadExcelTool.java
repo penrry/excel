@@ -71,7 +71,7 @@ public class ReadExcelTool {
                 }
             }
         }
-        logger.info(gson.toJson(list));
+//        logger.info(gson.toJson(list));
         return list;
     }
     public static void checkFile(File file) throws IOException{

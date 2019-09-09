@@ -68,12 +68,17 @@ public class SqlBuilder {
         builder.append("PRIMARY KEY (`id`) ");
 
         builder.append(" ) ");
+<<<<<<< HEAD
 
         System.out.println("--------------builder----------------");
         System.out.println(builder.toString().toLowerCase());
         return builder.toString().toLowerCase();
 
 
+=======
+        builder.append(" comment = '" + table.getTableComment() + "' ");
+        return builder.toString();
+>>>>>>> fbef8d326d0a72ddcd5ee29565527983d18c1854
     }
 
 
@@ -91,9 +96,13 @@ public class SqlBuilder {
             return false;
 
         }
+<<<<<<< HEAD
 //        System.out.println("------------columnTYpe---------------------");
 //        System.out.println(StringUtils.isEmpty(column.getColumnType()));
 
+=======
+        //todo
+>>>>>>> fbef8d326d0a72ddcd5ee29565527983d18c1854
 //        if(StringUtils.isEmpty(column.getColumnLength())){
 //            return false;
 //        }

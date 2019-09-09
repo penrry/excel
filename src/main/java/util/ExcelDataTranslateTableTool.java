@@ -31,11 +31,14 @@ public class ExcelDataTranslateTableTool {
                     throw new Exception("无法从excel数据中获取到表名");
                 }
                 table.setTableName(data.get(0)[0]);
-                table.setTableComment(data.get(0)[1]);
+                table.setTableComment(data.get(0)[1]);//(0)[1]行列
                 Column column = getColumn(data.get(0));
                 table.getColumnList().add(column);
+                System.out.println(data.size());
+
             } else {
                 table.getColumnList().add(getColumn(data.get(i)));
+
             }
         }
         return table;
@@ -53,10 +56,10 @@ public class ExcelDataTranslateTableTool {
         column.setColumnName(data[2]);
         //获取字段类型
         column.setColumnType(data[3]);
-        //获取字段长度
-        column.setColumnLength(data[4]);
+        //获取字段是否设为NULL
+        column.setColumnLimitNull(data[4]);
         //获取字段描述
-        column.setColumnComment(data[5]);
+        column.setColumnComment(data[5]);//[5]
         return column;
     }
 
@@ -74,7 +77,11 @@ public class ExcelDataTranslateTableTool {
                 if(i != 0){
                     end = i;
                     map.put(tableName,data.subList(begin,end));
+                    System.out.println(begin);
+                    System.out.println(end);
                     begin = i;
+                    System.out.println("begin--------------------------");
+                    System.out.println(begin);
                 }
                 //下一张表的表名
                 tableName = name;

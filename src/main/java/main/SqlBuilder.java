@@ -4,10 +4,11 @@ import core.Column;
 import core.Table;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.Properties;
 
 /**
- * @author dxw
+ * @author wpy
  * @ClassName SqlBuilder.java
  * @Description SQL语句创建器
  * @createTime 2019-06-05 14:46
@@ -28,29 +29,53 @@ public class SqlBuilder {
     }
 
     public String getCreateTableSql(){
-        StringBuilder builder = new StringBuilder(1000);
+        StringBuilder builder = new StringBuilder(10000);
         builder.append("create table `" + table.getTableName() +"`");
         builder.append(" ( ");
+        builder.append("`id` varchar(64) NOT NULL  COMMENT '主键ID' ,");
+
         for (Column column : table.getColumnList()) {
             //去除空的实体column
             if (checkColumn(column)) {
+
                 builder.append(column.getColumnName()+" ");
                 //部分数据类型特殊处理
                 if(checkUnSetLengthType(column.getColumnType())){
                     builder.append(column.getColumnType()+ " ");
-                }else {
-                    builder.append(column.getColumnType()+"("+column.getColumnLength() + ")" + " ");
                 }
+                else {
+//                    builder.append(column.getColumnType()+"("+column.getColumnLength() + ")" + " ");
+                    builder.append(column.getColumnType()+ " ");
+                }
+//                判断字段是否允许设为空值
+                if((Integer.parseInt(column.getColumnLimitNull()))==0){
+                    builder.append("not null  ");
+                }
+//                System.out.println("------------limitNull---------------");
+//                System.out.println(column.getColumnLimitNull());
+
                 builder.append("comment '" + column.getColumnComment() + "'" +" ");
+
                 builder.append(",");
             }
+            System.out.println(table.getTableName());
         }
+
+
         //去除最后一个逗号
-        int i = builder.lastIndexOf(",");
-        builder.delete(i,i+1);
+//        int i = builder.lastIndexOf(",");
+//        builder.delete(i,i+1);
+        builder.append("PRIMARY KEY (`id`) ");
+
         builder.append(" ) ");
-        return builder.toString();
+
+        System.out.println("--------------builder----------------");
+        System.out.println(builder.toString().toLowerCase());
+        return builder.toString().toLowerCase();
+
+
     }
+
 
     /**
      * 检查每列数据是否齐全，不齐全将不会加入到sql语句拼接中
@@ -64,10 +89,14 @@ public class SqlBuilder {
         }
         if(StringUtils.isEmpty(column.getColumnType())){
             return false;
+
         }
-        if(StringUtils.isEmpty(column.getColumnLength())){
-            return false;
-        }
+//        System.out.println("------------columnTYpe---------------------");
+//        System.out.println(StringUtils.isEmpty(column.getColumnType()));
+
+//        if(StringUtils.isEmpty(column.getColumnLength())){
+//            return false;
+//        }
         return true;
     }
 
@@ -99,6 +128,11 @@ public class SqlBuilder {
         if(type.compareToIgnoreCase("TEXT")==0){
             return true;
         }
+        //--------------number字段---------------------------
+        if(type.compareToIgnoreCase("NUMBER")==0){
+            return true;
+        }
+        //--------------------end----------------------------
         if(type.compareToIgnoreCase("DOUBLE") == 0){
             String doubleSetting = properties.getProperty("type_double_auto");
             if(doubleSetting != null && doubleSetting.equals("1")){

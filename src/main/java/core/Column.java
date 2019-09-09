@@ -26,7 +26,11 @@ public class Column {
     /**
      * 字段长度
      */
-    private String columnLength;
+//    private String columnLength;
+    /**
+     * 字段是否允许设为空值
+     */
+    private String columnLimitNull;
 
     public String getColumnName() {
         return columnName;
@@ -52,12 +56,12 @@ public class Column {
         this.columnType = columnType;
     }
 
-    public String getColumnLength() {
-        return columnLength;
+    public String getColumnLimitNull() {
+        return columnLimitNull;
     }
 
-    public void setColumnLength(String columnLength) {
-        this.columnLength = columnLength;
+    public void setColumnLimitNull(String columnLimitNull) {
+        this.columnLimitNull = columnLimitNull;
     }
 
     @Override
@@ -66,7 +70,7 @@ public class Column {
                 "columnName='" + columnName + '\'' +
                 ", columnComment='" + columnComment + '\'' +
                 ", columnType='" + columnType + '\'' +
-                ", columnLength='" + columnLength + '\'' +
+                ", columnLimitNull='" + columnLimitNull + '\'' +
                 '}';
     }
 }
